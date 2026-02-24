@@ -27,7 +27,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         ...state,
         remainingGuesses: newRemainingGuesses,
         wrongLetters: [...state.wrongLetters, action.letter],
-        gameStatus: newRemainingGuesses === 0 ? "lost" : "playing",
+        gameStatus: newRemainingGuesses <= 0 ? "lost" : "playing",
       };
 
     case "CORRECT_GUESS":
