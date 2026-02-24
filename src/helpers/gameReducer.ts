@@ -6,12 +6,14 @@ export type GameState = {
   wrongLetters: string[];
   correctLetters: string[];
   gameStatus: "playing" | "won" | "lost";
+  showStatus: boolean;
 };
 
 export type GameAction =
   | { type: "WRONG_GUESS"; letter: string }
   | { type: "CORRECT_GUESS"; letter: string }
-  | { type: "RESET" };
+  | { type: "RESET" }
+  | { type: "SHOW_STATUS" };
 
 export const initialState: GameState = {
   word: ks1Words[Math.floor(Math.random() * ks1Words.length)],
@@ -19,6 +21,7 @@ export const initialState: GameState = {
   wrongLetters: [],
   correctLetters: [],
   gameStatus: "playing",
+  showStatus: false,
 };
 
 export function gameReducer(state: GameState, action: GameAction): GameState {
@@ -47,6 +50,12 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
     case "RESET":
       return initialState;
+
+    case "SHOW_STATUS":
+      return {
+        ...state,
+        showStatus: true,
+      };
 
     default:
       return state;

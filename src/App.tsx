@@ -10,7 +10,6 @@ import GameStatus from "./components/GamesStatus/GameStatus";
 
 function App() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
-  const [showStatus, setShowStatus] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -29,7 +28,7 @@ function App() {
   useEffect(() => {
     if (state.gameStatus === "lost" || state.gameStatus === "won") {
       setTimeout(() => {
-        setShowStatus(true);
+        dispatch({ type: "SHOW_STATUS" });
       }, 1000);
     }
   }, [state]);
@@ -40,7 +39,7 @@ function App() {
       <Canvas remainingGuesses={state.remainingGuesses} />
       <WordGrid word={state.word} correctLetters={state.correctLetters} />
       <WrongGuesses letters={state.wrongLetters} />
-      {showStatus && <GameStatus status={state.gameStatus} />}
+      {state.showStatus && <GameStatus status={state.gameStatus} dispatch={dispatch} />}
     </div>
   );
 }
