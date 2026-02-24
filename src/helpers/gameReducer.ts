@@ -1,3 +1,5 @@
+import { ks1Words } from "../words";
+
 export type GameState = {
   word: string;
   remainingGuesses: number;
@@ -12,7 +14,7 @@ export type GameAction =
   | { type: "RESET" };
 
 export const initialState: GameState = {
-  word: "chicken",
+  word: ks1Words[Math.floor(Math.random() * ks1Words.length)],
   remainingGuesses: 15,
   wrongLetters: [],
   correctLetters: [],
@@ -27,7 +29,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         ...state,
         remainingGuesses: newRemainingGuesses,
         wrongLetters: [...state.wrongLetters, action.letter],
-        gameStatus: newRemainingGuesses === 0 ? "lost" : "playing",
+        gameStatus: newRemainingGuesses <= 0 ? "lost" : "playing",
       };
 
     case "CORRECT_GUESS":
