@@ -1,0 +1,14 @@
+.guessesGrid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+
+  span {
+    &.incorrect {
+      color: darkred;
+    }
+    &.correct {
+      color: green;
+    }
+    font-size: 1.6rem;
+  }
+}
