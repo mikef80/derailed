@@ -1,6 +1,7 @@
 import { resetGame } from "../../helpers/gameActions";
 import { RotateCw } from "lucide-react";
 import styles from "./GamesStatus.module.scss";
+import { getPlayerStats } from "../../storage/storageHelpers";
 
 const GameStatus = ({
   status,
@@ -15,6 +16,8 @@ const GameStatus = ({
     dispatch(resetGame());
   };
 
+  const { won, lost, currentStreak, bestStreak } = getPlayerStats();
+
   return (
     <div className={styles.status}>
       <h1>YOU {status.toUpperCase()}!</h1>
@@ -23,6 +26,13 @@ const GameStatus = ({
         <strong>
           <em>{word}</em>
         </strong>
+      </p>
+      <p>
+        Won: {won}
+        Lost: {lost}
+        Current streak: {currentStreak}
+        Best streak: {bestStreak}
+        Overall win rate (%): {(won / (won + lost)) * 100}
       </p>
       <button className={styles.button} onClick={handleRestart}>
         <RotateCw className={styles.restartIcon} size={14} />
