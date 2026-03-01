@@ -1,5 +1,5 @@
 export const ks1Words = [
-"ant"/* ,"bag","bat","bed","bee","bin","box","boy","bus","car",
+"ant" ,"bag"/*,"bat","bed","bee","bin","box","boy","bus","car",
 "cat","cow","cup","dad","dog","ear","egg","elf","fan","far",
 "fat","fig","fin","fix","fox","fun","gap","gas","gem","get",
 "gig","gum","gun","hat","hen","hip","hit","hop","hot","ice",
