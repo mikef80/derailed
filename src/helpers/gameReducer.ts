@@ -16,6 +16,18 @@ export type GameAction =
   | { type: "SHOW_STATUS" };
 
 export function gameReducer(state: GameState, action: GameAction): GameState {
+  if (!action || typeof action !== "object") {
+    console.error("🚨 Invalid action dispatched:", action);
+    return state;
+  }
+
+  if (!("type" in action)) {
+    console.error("🚨 Action missing type:", action);
+    return state;
+  }
+
+  console.log("🧠 Reducer received:", action);
+
   switch (action.type) {
     case "WRONG_GUESS":
       const newRemainingGuesses = state.remainingGuesses - 1;
@@ -50,6 +62,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       };
 
     default:
+      console.error("🚨 Unknown action type:", action);
       return state;
   }
 }
